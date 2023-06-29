@@ -26,9 +26,11 @@ class BeamSearch(SearchMethod):
     def perform_search(self, initial_result):
         beam = [initial_result.attacked_text]
         best_result = initial_result
+        print('Start')
         while not best_result.goal_status == GoalFunctionResultStatus.SUCCEEDED:
             potential_next_beam = []
             for text in beam:
+                print('Current beam')
                 transformations = self.get_transformations(
                     text, original_text=initial_result.attacked_text
                 )

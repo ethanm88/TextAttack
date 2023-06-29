@@ -250,6 +250,7 @@ class WordSwapMaskedLM(WordSwap):
             return top_replacements
 
     def _get_transformations(self, current_text, indices_to_modify):
+        print('hello')
         indices_to_modify = list(indices_to_modify)
         if self.method == "bert-attack":
             current_inputs = self._encode_text(current_text.text)
@@ -280,15 +281,18 @@ class WordSwapMaskedLM(WordSwap):
             return transformed_texts
 
         elif self.method == "bae":
+            print('h1')
             replacement_words = self._bae_replacement_words(
                 current_text, indices_to_modify
             )
+            print(replacement_words)
             transformed_texts = []
             for i in range(len(replacement_words)):
+                print('m')
                 index_to_modify = indices_to_modify[i]
                 word_at_index = current_text.words[index_to_modify]
                 for word in replacement_words[i]:
-                    word = word.strip("Ġ")
+                    word = word.strip("G")
                     if (
                         word != word_at_index
                         and re.search("[a-zA-Z]", word)

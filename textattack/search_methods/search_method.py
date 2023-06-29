@@ -20,6 +20,7 @@ class SearchMethod(ReprMixin, ABC):
     def __call__(self, initial_result):
         """Ensures access to necessary functions, then calls
         ``perform_search``"""
+        print(type(self))
         if not hasattr(self, "get_transformations"):
             raise AttributeError(
                 "Search Method must have access to get_transformations method"
